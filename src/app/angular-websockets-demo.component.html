@@ -1,0 +1,15 @@
+<h1>
+    Angular 2 & Spring WebSocket Demo Applica
+</h1>
+<div>
+  <div>
+    <button (click)="handleConnectButtonClicked()">Connect</button>
+    <button (click)="handleUnsubscribeButtonClicked()">Unsubscribe</button>
+    <button (click)="handleDisconnectButtonClicked()">Disconnect</button>
+  </div>
+  <div id="conversationDiv">
+    <label>What is your name?</label><input [(ngModel)]="inputName" type="text" id="name" />
+    <button (click)="handleSendButtonClicked()">Send</button>
+    <p id="response"></p>
+  </div>
+</div>
