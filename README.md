@@ -1,1 +1,1 @@
-ng2-spring-websocket-client
+ml-websocket-client

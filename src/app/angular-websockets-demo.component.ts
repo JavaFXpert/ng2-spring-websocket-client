@@ -18,7 +18,7 @@ export class AngularWebsocketsDemoAppComponent {
 
   constructor() {
     //TODO: Modify to inject into constructor?
-    this.ws = new $WebSocket("ws://localhost:8080/counter");
+    this.ws = new $WebSocket("ws://localhost:8089/counter");
   }
 
   handleConnectButtonClicked() {
@@ -35,10 +35,10 @@ export class AngularWebsocketsDemoAppComponent {
     if (subject.observers == null || subject.observers.length == 0) {
       subject.subscribe(
         res => {
-          var count = JSON.parse(res.data).value;
+          //var count = JSON.parse(res.data).value;
           //console.log('Got: ' + res.data);
           console.log('Got: ' + res.data);
-          console.log('count: ' + count);
+          //console.log('count: ' + count);
           //this.counter = count;
         },
         function (e) {
