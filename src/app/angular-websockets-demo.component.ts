@@ -18,7 +18,8 @@ export class AngularWebsocketsDemoAppComponent {
 
   constructor() {
     //TODO: Modify to inject into constructor?
-    this.ws = new $WebSocket("ws://localhost:8089/counter");
+    this.ws = new $WebSocket("wss://visualneuralnetservice.cfapps.io:4443/counter");
+    // this.ws = new $WebSocket("ws://localhost:8080/counter");
   }
 
   handleConnectButtonClicked() {
