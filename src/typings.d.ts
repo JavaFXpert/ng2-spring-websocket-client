@@ -8,11 +8,36 @@ declare var module: { id: string };
 // Definitions: ---
 
 declare namespace vis {
+  import INode = Vis.INode;
+  import IEdge = Vis.IEdge;
   export interface ITimelineStatic {
     new(id: HTMLElement, data: any, options?: any): Vis.ITimeline;
   }
-
   export var Timeline: ITimelineStatic;
+
+  export interface INetworkStatic {
+    new(id: HTMLElement, data: any, options?: any): Vis.INetwork;
+  }
+  export var Network: INetworkStatic;
+
+  export interface IDataSet {
+    new(nodes?: INode[], edges?: IEdge[]): Vis.IData;
+  }
+  export var DataSet: IDataSet;
+
+  /*
+  export interface INodeStatic {
+    new(id?: string, label?: string,
+        x?: number, y?: number,
+        fixed?: boolean, image?: string, shape?: string): Vis.INode;
+  }
+  export var Node: INodeStatic;
+
+  export interface IEdgeStatic {
+    new(from?: string, to?: string, id?: string): Vis.IEdge;
+  }
+  export var Edge: IEdgeStatic;
+  */
 }
 
 declare namespace Vis {
