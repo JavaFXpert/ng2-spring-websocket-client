@@ -9,17 +9,10 @@ declare var vis: any;
 @Component({
   //moduleId: module.id,
   selector: 'neural-net-graph',
-  //styleUrls: ['neural-net-graph.component.css'],
+  styleUrls: ['app/neural-net-graph.component.css'],
   //styleUrls: ['../css/vis.min.css'],
-  styleUrls: [],
   providers: [],
-  //templateUrl: 'neural-net-graph.component.html',
-  template: `
-      <h1>Hello</h1>
-      <input #myname  value="John Doe">
-      <div #neuralNetGraph></div>
-      <h1>Good bye</h1>
-`,
+  templateUrl: 'app/neural-net-graph.component.html',
   directives: []
 })
 export class NeuralNetGraphComponent {
