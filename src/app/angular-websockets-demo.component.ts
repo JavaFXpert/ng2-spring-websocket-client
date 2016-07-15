@@ -1,9 +1,12 @@
-import {Component} from '@angular/core';
+//import {Component} from '@angular/core';
 //import {Component, OnInit} from '@angular/core';
 import {$WebSocket} from './ng2-websocket';
 import {Subject} from "rxjs/Rx";
+import {Component, Input, ElementRef, ViewChild} from '@angular/core';
 
-import {NeuralNetGraphComponent} from "./neural-net-graph.component";
+declare var vis: any;
+
+//import {NeuralNetGraphComponent} from "./neural-net-graph.component";
 
 @Component({
   moduleId: module.id,
@@ -11,9 +14,12 @@ import {NeuralNetGraphComponent} from "./neural-net-graph.component";
   styleUrls: ['angular-websockets-demo.component.css'],
   providers: [],
   templateUrl: 'angular-websockets-demo.component.html',
-  directives: [NeuralNetGraphComponent]
+  directives: []
+  //directives: [NeuralNetGraphComponent]
 })
 export class AngularWebsocketsDemoAppComponent {
+  @ViewChild('neuralNetGraph') div:ElementRef;
+
   ws: $WebSocket;
   inputName: String = "Fred";
 
@@ -36,10 +42,16 @@ export class AngularWebsocketsDemoAppComponent {
 
     if (subject.observers == null || subject.observers.length == 0) {
       subject.subscribe(
-        res => {
-          //var count = JSON.parse(res.data).value;
-          //console.log('Got: ' + res.data);
-          console.log('Got: ' + res.data);
+        evt => {
+          //var count = JSON.parse(evt.data).value;
+          //console.log('Got: ' + evt.data);
+          console.log('Got: ' + evt.data);
+          var jsonObject = JSON.parse(evt.data);
+
+          // Remove quotes from field names
+          //var alteredJson = jsonStr.replace(/"(\w+)"\s*:/g, '$1:');
+
+          this.updateNeuralNetGraph(jsonObject);
           //console.log('count: ' + count);
           //this.counter = count;
         },
@@ -78,4 +90,116 @@ export class AngularWebsocketsDemoAppComponent {
 
   }
 
+  ngAfterViewInit() {
+    var results = {
+      nodes: [
+        {
+          id: "0",
+          label: "",
+          image: 'http://learnjavafx.typepad.com/mle/sigmoid.png'
+        },
+        {
+          id: "2",
+          label: "-4.45",
+          image: 'http://learnjavafx.typepad.com/mle/sigmoid.png'
+        }
+      ],
+      edges: [
+        {
+          from: "0",
+          to: "2",
+          arrows: "to",
+          label: "2.6"
+        }
+      ]
+    }
+
+    var nodes = new vis.DataSet(results.nodes);
+    var edges = new vis.DataSet(results.edges);
+
+    var data = {
+      nodes: nodes,
+      edges: edges
+    };
+    var options = {
+      nodes: {
+        borderWidth:1,
+        size: 30,
+        color: {
+          border: '#406897',
+          background: '#6AAFFF'
+        },
+        font:{color:'#000000'},
+        shape: 'circularImage',
+        shapeProperties: {
+          useBorderWithImage:true
+        }
+      },
+      edges: {
+        color: 'lightgray',
+        font: {color:'#000000', size: 14, align: 'top'}
+      },
+      layout: {
+        improvedLayout: true,
+        hierarchical: {
+          enabled: true,
+          levelSeparation: 150,
+          nodeSpacing: 100,
+          direction: "LR"
+        }
+      }
+    };
+    var network = new vis.Network(this.div.nativeElement, data, options);
+  }
+
+  updateNeuralNetGraph(results: any) {
+    var nodes = new vis.DataSet(results.nodes);
+    var edges = new vis.DataSet(results.edges);
+
+    var data = {
+      nodes: nodes,
+      edges: edges
+    };
+    var options = {
+      nodes: {
+        borderWidth:1,
+        size: 30,
+        color: {
+          border: '#406897',
+          background: '#6AAFFF'
+        },
+        font:{color:'#000000'},
+        shape: 'circularImage',
+        shapeProperties: {
+          useBorderWithImage:true
+        }
+      },
+      edges: {
+        color: 'lightgray',
+        font: {color:'#000000', size: 14, align: 'top'}
+      },
+      physics: {
+        enabled: false
+      },
+      layout: {
+        improvedLayout: true,
+        hierarchical: {
+          enabled: true,
+          levelSeparation: 300,
+          nodeSpacing: 200,
+          direction: 'LR',
+          sortMethod: 'directed'
+        }
+      },
+      edge: {
+        smooth: {
+          enabled: true,
+          roundness: 0
+        }
+      }
+
+    };
+    var network = new vis.Network(this.div.nativeElement, data, options);
+
+  }
 }
