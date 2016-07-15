@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Input} from '@angular/core';
-import {SineWaveDataService} from './sinewave-data.service';
+import {Component} from '@angular/core';
+//import {Component, OnInit} from '@angular/core';
 import {$WebSocket} from './ng2-websocket';
 import {Subject} from "rxjs/Rx";
+
+import {NeuralNetGraphComponent} from "./neural-net-graph.component";
 
 @Component({
   moduleId: module.id,
@@ -10,7 +11,7 @@ import {Subject} from "rxjs/Rx";
   styleUrls: ['angular-websockets-demo.component.css'],
   providers: [],
   templateUrl: 'angular-websockets-demo.component.html',
-  directives: []
+  directives: [NeuralNetGraphComponent]
 })
 export class AngularWebsocketsDemoAppComponent {
   ws: $WebSocket;
@@ -18,8 +19,8 @@ export class AngularWebsocketsDemoAppComponent {
 
   constructor() {
     //TODO: Modify to inject into constructor?
-    this.ws = new $WebSocket("wss://visualneuralnetservice.cfapps.io:4443/counter");
-    // this.ws = new $WebSocket("ws://localhost:8080/counter");
+    //this.ws = new $WebSocket("wss://visualneuralnetservice.cfapps.io:4443/counter");
+    this.ws = new $WebSocket("ws://localhost:8080/counter");
   }
 
   handleConnectButtonClicked() {
