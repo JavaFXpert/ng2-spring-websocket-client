@@ -9,7 +9,9 @@ declare var vis: any;
 @Component({
   //moduleId: module.id,
   selector: 'neural-net-graph',
-  //styleUrls: ['neural-net-graph.css'],
+  //styleUrls: ['neural-net-graph.component.css'],
+  //styleUrls: ['../css/vis.min.css'],
+  styleUrls: [],
   providers: [],
   //templateUrl: 'neural-net-graph.component.html',
   template: `
@@ -21,7 +23,7 @@ declare var vis: any;
   directives: []
 })
 export class NeuralNetGraphComponent {
-  @ViewChild('myname') input:ElementRef;
+  //@ViewChild('myname') input:ElementRef;
   @ViewChild('neuralNetGraph') div:ElementRef;
 
   constructor() {
@@ -41,11 +43,11 @@ export class NeuralNetGraphComponent {
     //var edges = new vis.DataSet([{from: "0", to: "2", arrows: "to", label: "2.6"}]);
 
     var nodes = new vis.DataSet([
-      {id: 1, label: 'Node 1'},
-      {id: 2, label: 'Node 2'},
-      {id: 3, label: 'Node 3'},
-      {id: 4, label: 'Node 4'},
-      {id: 5, label: 'Node 5'}
+      {id: 1, label: 'Node 1', image: '../image/sigmoid.png'},
+      {id: 2, label: 'Node 2', image: '../image/sigmoid.png'},
+      {id: 3, label: 'Node 3', image: '../image/sigmoid.png'},
+      {id: 4, label: 'Node 4', image: '../image/sigmoid.png'},
+      {id: 5, label: 'Node 5', image: '../image/sigmoid.png'}
     ]);
 
     var edges = new vis.DataSet([
@@ -80,8 +82,8 @@ export class NeuralNetGraphComponent {
     };
     var network = new vis.Network(this.div.nativeElement, data, options);
     //this.input.nativeElement.innerHTML = "<h3>Inserted</h3>";
-    console.log(this.input.nativeElement.value);
-    this.input.nativeElement.value = "Barney";
+    //console.log(this.input.nativeElement.value);
+    //this.input.nativeElement.value = "Barney";
     //this.div.nativeElement.innerHTML = "Wilma";
   }
 }

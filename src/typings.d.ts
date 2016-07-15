@@ -25,7 +25,6 @@ declare namespace vis {
   }
   export var DataSet: IDataSet;
 
-  /*
   export interface INodeStatic {
     new(id?: string, label?: string,
         x?: number, y?: number,
@@ -37,7 +36,6 @@ declare namespace vis {
     new(from?: string, to?: string, id?: string): Vis.IEdge;
   }
   export var Edge: IEdgeStatic;
-  */
 }
 
 declare namespace Vis {
