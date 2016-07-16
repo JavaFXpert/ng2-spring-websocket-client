@@ -21,7 +21,7 @@ export class AngularWebsocketsDemoAppComponent {
   @ViewChild('neuralNetGraph') div:ElementRef;
 
   ws: $WebSocket;
-  inputName: String = "Fred";
+  inputName: String = "MLPClassifierMoon";
 
   constructor() {
     //TODO: Modify to inject into constructor?
