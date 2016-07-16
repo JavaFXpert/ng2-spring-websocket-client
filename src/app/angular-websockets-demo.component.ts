@@ -176,7 +176,17 @@ export class AngularWebsocketsDemoAppComponent {
       },
       edges: {
         color: 'lightgray',
-        font: {color:'#000000', size: 14, align: 'top'}
+        font: {
+          color:'#000000',
+          size: 14,
+          align: 'top'
+        },
+        arrowStrikethrough: false,
+        scaling: {
+          label: {
+            enabled: true
+          }
+        }
       },
       physics: {
         enabled: false
@@ -186,15 +196,11 @@ export class AngularWebsocketsDemoAppComponent {
         hierarchical: {
           enabled: true,
           levelSeparation: 300,
-          nodeSpacing: 200,
+          nodeSpacing: 125,
           direction: 'LR',
-          sortMethod: 'directed'
-        }
-      },
-      edge: {
-        smooth: {
-          enabled: true,
-          roundness: 0
+          sortMethod: 'directed',
+          blockShifting: true,
+          edgeMinimization: true
         }
       }
 
