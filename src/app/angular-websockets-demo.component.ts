@@ -22,7 +22,9 @@ declare var vis: any;
   //directives: [NeuralNetGraphComponent]
 })
 export class AngularWebsocketsDemoAppComponent {
+  network: any;
   nodes: any;
+  edges: any;
   errorMessage: string;
   predictionResponse: PredictionResponse;
   @ViewChild('neuralNetGraph') div:ElementRef;
@@ -133,57 +135,65 @@ export class AngularWebsocketsDemoAppComponent {
       ]
     }
 
-    var nodes = new vis.DataSet(results.nodes);
-    var edges = new vis.DataSet(results.edges);
+    this.nodes = new vis.DataSet(results.nodes);
+    this.edges = new vis.DataSet(results.edges);
 
     var data = {
-      nodes: nodes,
-      edges: edges
+      nodes: this.nodes,
+      edges: this.edges
     };
-    var options = {
-      nodes: {
-        borderWidth:1,
-        size: 30,
-        color: {
-          border: '#406897',
-          background: '#6AAFFF'
-        },
-        font:{color:'#000000'},
-        shape: 'circularImage',
-        shapeProperties: {
-          useBorderWithImage:true
-        }
-      },
-      edges: {
-        color: 'lightgray',
-        font: {color:'#000000', size: 14, align: 'top'}
-      },
-      layout: {
-        improvedLayout: true,
-        hierarchical: {
-          enabled: true,
-          levelSeparation: 150,
-          nodeSpacing: 100,
-          direction: "LR"
-        }
-      }
-    };
-    var network = new vis.Network(this.div.nativeElement, data, options);
+    this.network = new vis.Network(this.div.nativeElement, data, this.createGraphOptions());
   }
 
   updateNeuralNetGraph(results: any) {
     this.nodes = new vis.DataSet(results.nodes);
     //var nodes = new vis.DataSet(results.nodes);
-    var edges = new vis.DataSet(results.edges);
+    this.edges = new vis.DataSet(results.edges);
 
     var data = {
       nodes: this.nodes,
-      edges: edges
+      edges: this.edges
     };
-    var options = {
+    this.network = new vis.Network(this.div.nativeElement, data, this.createGraphOptions());
+
+  }
+
+  updateActivationsPrediction(predictionResp: PredictionResponse) {
+    if (predictionResp != null) {
+      //alert("predictionResp.prediction: " + predictionResp.prediction);
+    }
+    for (let nodeId in predictionResp.activations) {
+      this.nodes.update([{id: nodeId, image: this.createNodeLabel("" + predictionResp.activations[nodeId]), shape: 'circularImage'}]);
+    }
+    this.network.setOptions(this.createGraphOptions());
+  }
+
+  createNodeLabel(label: String) {
+    var data = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">' +
+      '<rect x="0" y="0" width="100%" height="100%" fill="#ffffff" ></rect>' +
+      '<foreignObject x="10" y="11" width="100%" height="100%">' +
+      '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:8px">' +
+      '<span style="color:black;">' + label +
+      '</span>' +
+      '</div>' +
+      '</foreignObject>' +
+      '</svg>';
+
+
+    var DOMURL = window.URL;
+
+    var img = new Image();
+    var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+    var url = DOMURL.createObjectURL(svg);
+
+    return url;
+  }
+
+  createGraphOptions() {
+    var graphOptions = {
       nodes: {
         borderWidth:1,
-        size: 30,
+        size: 40,
         color: {
           border: '#406897',
           background: '#6AAFFF'
@@ -223,39 +233,7 @@ export class AngularWebsocketsDemoAppComponent {
           edgeMinimization: true
         }
       }
-
     };
-    var network = new vis.Network(this.div.nativeElement, data, options);
-
-  }
-
-  updateActivationsPrediction(predictionResp: PredictionResponse) {
-    if (predictionResp != null) {
-      //alert("predictionResp.prediction: " + predictionResp.prediction);
-    }
-    for (let nodeId in predictionResp.activations) {
-      this.nodes.update([{id: nodeId, image: this.createNodeLabel("" + predictionResp.activations[nodeId]), shape: 'circularImage'}]);
-    }
-  }
-
-  createNodeLabel(label: String) {
-    var data = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">' +
-      '<rect x="0" y="0" width="100%" height="100%" fill="#ffffff" ></rect>' +
-      '<foreignObject x="10" y="11" width="100%" height="100%">' +
-      '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:8px">' +
-      '<span style="color:black;">' + label +
-      '</span>' +
-      '</div>' +
-      '</foreignObject>' +
-      '</svg>';
-
-
-    var DOMURL = window.URL;
-
-    var img = new Image();
-    var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
-    var url = DOMURL.createObjectURL(svg);
-
-    return url;
+    return graphOptions;
   }
 }
