@@ -12,7 +12,7 @@ import { Observable }     from 'rxjs/Observable';
 export class PredictionService {
   constructor (private http: Http) {}
 
-  private predictionUrl = 'http://localhost:8080/prediction?values=1,0';  // URL to web API
+  private predictionUrl = 'http://localhost:8080/prediction?values=5.9,3.0,5.1,1.8';  // URL to web API
 
   getPredictionResponse (): Observable<PredictionResponse> {
     return this.http.get(this.predictionUrl)

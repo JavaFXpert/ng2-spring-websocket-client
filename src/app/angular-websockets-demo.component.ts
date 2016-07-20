@@ -231,8 +231,31 @@ export class AngularWebsocketsDemoAppComponent {
 
   updateActivationsPrediction(predictionResp: PredictionResponse) {
     if (predictionResp != null) {
-      alert("predictionResp.prediction: " + predictionResp.prediction);
+      //alert("predictionResp.prediction: " + predictionResp.prediction);
     }
-    this.nodes.update([{id:1, label:"Hello"}]);
+    for (let nodeId in predictionResp.activations) {
+      this.nodes.update([{id: nodeId, image: this.createNodeLabel("" + predictionResp.activations[nodeId]), shape: 'circularImage'}]);
+    }
+  }
+
+  createNodeLabel(label: String) {
+    var data = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">' +
+      '<rect x="0" y="0" width="100%" height="100%" fill="#ffffff" ></rect>' +
+      '<foreignObject x="10" y="11" width="100%" height="100%">' +
+      '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:8px">' +
+      '<span style="color:black;">' + label +
+      '</span>' +
+      '</div>' +
+      '</foreignObject>' +
+      '</svg>';
+
+
+    var DOMURL = window.URL;
+
+    var img = new Image();
+    var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+    var url = DOMURL.createObjectURL(svg);
+
+    return url;
   }
 }
