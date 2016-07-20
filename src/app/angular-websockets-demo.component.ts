@@ -27,6 +27,7 @@ export class AngularWebsocketsDemoAppComponent {
   edges: any;
   errorMessage: string;
   predictionResponse: PredictionResponse;
+  numInputs: number;
   @ViewChild('neuralNetGraph') div:ElementRef;
 
   ws: $WebSocket;
@@ -57,12 +58,7 @@ export class AngularWebsocketsDemoAppComponent {
           console.log('Got: ' + evt.data);
           var jsonObject = JSON.parse(evt.data);
 
-          // Remove quotes from field names
-          //var alteredJson = jsonStr.replace(/"(\w+)"\s*:/g, '$1:');
-
           this.updateNeuralNetGraph(jsonObject);
-          //console.log('count: ' + count);
-          //this.counter = count;
         },
         function (e) {
           console.log('Error: ' + e.message);
@@ -146,8 +142,10 @@ export class AngularWebsocketsDemoAppComponent {
   }
 
   updateNeuralNetGraph(results: any) {
+    // Make note of the number of inputs
+    this.numInputs = results.neuralNetLayerList[0].neuralNetNodeList.length;
+
     this.nodes = new vis.DataSet(results.nodes);
-    //var nodes = new vis.DataSet(results.nodes);
     this.edges = new vis.DataSet(results.edges);
 
     var data = {
