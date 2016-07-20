@@ -10,6 +10,8 @@
   <div id="conversationDiv">
     <label>What is your name?</label><input [(ngModel)]="inputName" type="text" id="name" />
     <button (click)="handleSendButtonClicked()">Send</button>
+    <button (click)="handlePredictButtonClicked()">Predict</button>
+    <label></label>
     <p id="response"></p>
   </div>
   <div #neuralNetGraph id="neuralNetGraph"></div>

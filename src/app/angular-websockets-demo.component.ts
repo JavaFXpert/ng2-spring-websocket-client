@@ -1,29 +1,36 @@
-//import {Component} from '@angular/core';
-//import {Component, OnInit} from '@angular/core';
-import {$WebSocket} from './ng2-websocket';
-import {Subject} from "rxjs/Rx";
+/*
+  TODO: delegate WebSocket access to a supporting service class
+ */
+
 import {Component, Input, ElementRef, ViewChild} from '@angular/core';
+import './rxjs-operators';
+import {Subject} from "rxjs/Rx";
+import {$WebSocket} from './ng2-websocket';
+import { HTTP_PROVIDERS } from '@angular/http';
+import {PredictionService} from "./service/prediction.service";
+import {PredictionResponse} from "./model/prediction-response";
 
 declare var vis: any;
-
-//import {NeuralNetGraphComponent} from "./neural-net-graph.component";
 
 @Component({
   moduleId: module.id,
   selector: 'angular-websockets-demo-app',
   styleUrls: ['angular-websockets-demo.component.css'],
-  providers: [],
+  providers: [PredictionService, HTTP_PROVIDERS],
   templateUrl: 'angular-websockets-demo.component.html',
   directives: []
   //directives: [NeuralNetGraphComponent]
 })
 export class AngularWebsocketsDemoAppComponent {
+  nodes: any;
+  errorMessage: string;
+  predictionResponse: PredictionResponse;
   @ViewChild('neuralNetGraph') div:ElementRef;
 
   ws: $WebSocket;
-  inputName: String = "MLPClassifierMoon";
+  inputName: String = "XorExample";
 
-  constructor() {
+  constructor(private predictionService: PredictionService) {
     //TODO: Modify to inject into constructor?
     //this.ws = new $WebSocket("wss://visualneuralnetservice.cfapps.io:4443/counter");
     this.ws = new $WebSocket("ws://localhost:8080/counter");
@@ -90,6 +97,18 @@ export class AngularWebsocketsDemoAppComponent {
 
   }
 
+  handlePredictButtonClicked() {
+    console.log("Predict button clicked");
+    this.predictionService.getPredictionResponse()
+      .subscribe(
+        predictionResponse => {
+          this.predictionResponse = predictionResponse;
+          this.updateActivationsPrediction(predictionResponse);
+        },
+        error =>  this.errorMessage = <any>error);
+
+  }
+
   ngAfterViewInit() {
     var results = {
       nodes: [
@@ -153,11 +172,12 @@ export class AngularWebsocketsDemoAppComponent {
   }
 
   updateNeuralNetGraph(results: any) {
-    var nodes = new vis.DataSet(results.nodes);
+    this.nodes = new vis.DataSet(results.nodes);
+    //var nodes = new vis.DataSet(results.nodes);
     var edges = new vis.DataSet(results.edges);
 
     var data = {
-      nodes: nodes,
+      nodes: this.nodes,
       edges: edges
     };
     var options = {
@@ -207,5 +227,12 @@ export class AngularWebsocketsDemoAppComponent {
     };
     var network = new vis.Network(this.div.nativeElement, data, options);
 
+  }
+
+  updateActivationsPrediction(predictionResp: PredictionResponse) {
+    if (predictionResp != null) {
+      alert("predictionResp.prediction: " + predictionResp.prediction);
+    }
+    this.nodes.update([{id:1, label:"Hello"}]);
   }
 }
