@@ -14,6 +14,11 @@
     <label></label>
     <p id="response"></p>
   </div>
+  <ul>
+    <li *ngFor="let inputValue of inputValues">
+      {{inputValue}}
+    </li>
+  </ul>
   <div #neuralNetGraph id="neuralNetGraph"></div>
   <!--neural-net-graph></neural-net-graph-->
 </div>

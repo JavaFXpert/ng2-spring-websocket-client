@@ -28,6 +28,7 @@ export class AngularWebsocketsDemoAppComponent {
   errorMessage: string;
   predictionResponse: PredictionResponse;
   numInputs: number;
+  inputValues: string[] = [];
   @ViewChild('neuralNetGraph') div:ElementRef;
 
   ws: $WebSocket;
@@ -142,8 +143,15 @@ export class AngularWebsocketsDemoAppComponent {
   }
 
   updateNeuralNetGraph(results: any) {
-    // Make note of the number of inputs
+    // Make note of the number of inputs TODO: perhaps remove this and the numInputs member variable
     this.numInputs = results.neuralNetLayerList[0].neuralNetNodeList.length;
+
+    // Create an array element for each input
+    this.inputValues = [];
+    for (var inputIdx in results.neuralNetLayerList[0].neuralNetNodeList) {
+      //console.log("inputIdx: " + inputIdx);
+      this.inputValues.push("0");
+    }
 
     this.nodes = new vis.DataSet(results.nodes);
     this.edges = new vis.DataSet(results.edges);
