@@ -100,7 +100,7 @@ export class AngularWebsocketsDemoAppComponent {
 
   handlePredictButtonClicked() {
     console.log("Predict button clicked, inputValues: " + this.inputValues);
-    this.predictionService.getPredictionResponse()
+    this.predictionService.getPredictionResponse(this.inputValues)
       .subscribe(
         predictionResponse => {
           this.predictionResponse = predictionResponse;
@@ -152,7 +152,7 @@ export class AngularWebsocketsDemoAppComponent {
     this.inputValues = [];
     for (var inputIdx in results.neuralNetLayerList[0].neuralNetNodeList) {
       //console.log("inputIdx: " + inputIdx);
-      this.inputValues.push("0");
+      this.inputValues.push("");
     }
 
     this.nodes = new vis.DataSet(results.nodes);
@@ -179,8 +179,8 @@ export class AngularWebsocketsDemoAppComponent {
   createNodeLabel(label: String) {
     var data = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">' +
       '<rect x="0" y="0" width="100%" height="100%" fill="#ffffff" ></rect>' +
-      '<foreignObject x="10" y="11" width="100%" height="100%">' +
-      '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:8px">' +
+      '<foreignObject x="12" y="11" width="100%" height="100%">' +
+      '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:6px">' +
       '<span style="color:black;">' + label +
       '</span>' +
       '</div>' +
