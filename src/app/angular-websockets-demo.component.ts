@@ -34,7 +34,7 @@ export class AngularWebsocketsDemoAppComponent {
   @ViewChild('neuralNetGraph') div:ElementRef;
 
   ws: $WebSocket;
-  inputName: String = "XorExample";
+  inputName: String = "CSVExample";
 
   constructor(private predictionService: PredictionService) {
     //TODO: Modify to inject into constructor?
@@ -99,7 +99,7 @@ export class AngularWebsocketsDemoAppComponent {
   }
 
   handlePredictButtonClicked() {
-    console.log("Predict button clicked");
+    console.log("Predict button clicked, inputValues: " + this.inputValues);
     this.predictionService.getPredictionResponse()
       .subscribe(
         predictionResponse => {
@@ -152,7 +152,7 @@ export class AngularWebsocketsDemoAppComponent {
     this.inputValues = [];
     for (var inputIdx in results.neuralNetLayerList[0].neuralNetNodeList) {
       //console.log("inputIdx: " + inputIdx);
-      this.inputValues.push("0");
+      this.inputValues.push("5");
     }
 
     this.nodes = new vis.DataSet(results.nodes);

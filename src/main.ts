@@ -1,5 +1,6 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
+//import {disableDeprecatedForms, provideForms} from '@angular/forms';
 import {PLATFORM_DIRECTIVES,provide,Input,Directive,HostBinding} from '@angular/core';
 import { AngularWebsocketsDemoAppComponent} from './app/angular-websockets-demo.component';
 import { environment } from './app/environment';
