@@ -152,7 +152,7 @@ export class AngularWebsocketsDemoAppComponent {
     this.inputValues = [];
     for (var inputIdx in results.neuralNetLayerList[0].neuralNetNodeList) {
       //console.log("inputIdx: " + inputIdx);
-      this.inputValues.push("5");
+      this.inputValues.push("0");
     }
 
     this.nodes = new vis.DataSet(results.nodes);

@@ -16,11 +16,27 @@
     </div>
 
     <div layout="column">
+      <!-- TODO: Find out how to bind to an array -->
+      <input placeholder="feature" *ngIf="inputValues.length > 0" [(ngModel)]="inputValues[0]" />
+      <input placeholder="feature" *ngIf="inputValues.length > 1" [(ngModel)]="inputValues[1]" />
+      <input placeholder="feature" *ngIf="inputValues.length > 2" [(ngModel)]="inputValues[2]" />
+      <input placeholder="feature" *ngIf="inputValues.length > 3" [(ngModel)]="inputValues[3]" />
+      <input placeholder="feature" *ngIf="inputValues.length > 4" [(ngModel)]="inputValues[4]" />
+      <input placeholder="feature" *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[5]" />
+      <input placeholder="feature" *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[6]" />
+      <input placeholder="feature" *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[7]" />
+      <input placeholder="feature" *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[8]" />
+      <input placeholder="feature" *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[9]" />
+      <button md-button (click)="handlePredictButtonClicked()">Predict</button>
+    </div>
+
+
+    <!--div layout="column">
       <div *ngFor="let inputValue of inputValues" >
         <input placeholder="feature" align="end" value={{inputValue}} />
       </div>
       <button md-button (click)="handlePredictButtonClicked()">Predict</button>
-    </div>
+    </div-->
 
     <!--ul>
       <li *ngFor="let inputValue of inputValues">
