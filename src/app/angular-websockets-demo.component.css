@@ -1,5 +1,21 @@
+section {
+  width: 99%;
+  height: 600px;
+  margin: auto;
+  padding: 10px;
+}
+#controls {
+  width: 15%;
+  /*height: 100%;*/
+  float: left;
+}
 #neuralNetGraph {
-  width: 1400px;
-  height: 500px;
+  margin-left: 15%;
+  height: 100%;
   border: 1px solid lightgray;
 }
+
+/*#neuralNetGraph {
+  border: 1px solid lightgray;
+}
+*/

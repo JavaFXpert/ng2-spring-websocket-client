@@ -1,24 +1,25 @@
 <h3>
     Angular 2 & Spring WebSocket Demo Application
 </h3>
-<div>
-  <div>
-    <button (click)="handleConnectButtonClicked()">Connect</button>
-    <button (click)="handleUnsubscribeButtonClicked()">Unsubscribe</button>
-    <button (click)="handleDisconnectButtonClicked()">Disconnect</button>
+<section>
+  <div id="controls">
+    <div>
+      <button (click)="handleConnectButtonClicked()">Connect</button>
+      <button (click)="handleUnsubscribeButtonClicked()">Unsubscribe</button>
+      <button (click)="handleDisconnectButtonClicked()">Disconnect</button>
+    </div>
+    <div id="conversationDiv">
+      <label>What is your name?</label><input [(ngModel)]="inputName" type="text" id="name" />
+      <button (click)="handleSendButtonClicked()">Send</button>
+      <button (click)="handlePredictButtonClicked()">Predict</button>
+      <label></label>
+      <p id="response"></p>
+    </div>
+    <ul>
+      <li *ngFor="let inputValue of inputValues">
+        {{inputValue}}
+      </li>
+    </ul>
   </div>
-  <div id="conversationDiv">
-    <label>What is your name?</label><input [(ngModel)]="inputName" type="text" id="name" />
-    <button (click)="handleSendButtonClicked()">Send</button>
-    <button (click)="handlePredictButtonClicked()">Predict</button>
-    <label></label>
-    <p id="response"></p>
-  </div>
-  <ul>
-    <li *ngFor="let inputValue of inputValues">
-      {{inputValue}}
-    </li>
-  </ul>
   <div #neuralNetGraph id="neuralNetGraph"></div>
-  <!--neural-net-graph></neural-net-graph-->
-</div>
+</section>
