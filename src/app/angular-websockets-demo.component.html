@@ -1,17 +1,17 @@
-<h3>
-    Angular 2 & Spring WebSocket Demo Application
-</h3>
-<section>
-  <div id="controls">
+<md-toolbar [color]="myColor">
+  <span>Visible Neural Network</span>
+</md-toolbar>
+<section layout="row">
+  <div id="controls" flex="20">
     <div>
-      <button (click)="handleConnectButtonClicked()">Connect</button>
-      <button (click)="handleUnsubscribeButtonClicked()">Unsubscribe</button>
-      <button (click)="handleDisconnectButtonClicked()">Disconnect</button>
+      <button md-button (click)="handleConnectButtonClicked()">Connect</button>
+      <button md-button (click)="handleUnsubscribeButtonClicked()">Unsubscribe</button>
+      <button md-button (click)="handleDisconnectButtonClicked()">Disconnect</button>
     </div>
     <div id="conversationDiv">
       <label>What is your name?</label><input [(ngModel)]="inputName" type="text" id="name" />
-      <button (click)="handleSendButtonClicked()">Send</button>
-      <button (click)="handlePredictButtonClicked()">Predict</button>
+      <button md-button (click)="handleSendButtonClicked()">Send</button>
+      <button md-button (click)="handlePredictButtonClicked()">Predict</button>
       <label></label>
       <p id="response"></p>
     </div>
@@ -20,6 +20,10 @@
         {{inputValue}}
       </li>
     </ul>
+    <div layout="row">
+      <div flex>First</div>
+      <div flex>Second</div>
+    </div>
   </div>
-  <div #neuralNetGraph id="neuralNetGraph"></div>
+  <div #neuralNetGraph id="neuralNetGraph" flex="70" grow="50"></div>
 </section>

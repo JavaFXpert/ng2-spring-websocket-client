@@ -12,7 +12,8 @@ module.exports = function(defaults) {
       'reflect-metadata/*.js',
       'rxjs/**/*.js',
       '@angular/**/*.js',
-      'smoothie/smoothie.js'
+      'smoothie/smoothie.js',
+      '@angular2-material/**/*'
     ]
   });
 };

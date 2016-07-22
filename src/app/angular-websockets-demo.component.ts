@@ -9,6 +9,8 @@ import {$WebSocket} from './ng2-websocket';
 import { HTTP_PROVIDERS } from '@angular/http';
 import {PredictionService} from "./service/prediction.service";
 import {PredictionResponse} from "./model/prediction-response";
+import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
+import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 
 declare var vis: any;
 
@@ -18,7 +20,7 @@ declare var vis: any;
   styleUrls: ['angular-websockets-demo.component.css'],
   providers: [PredictionService, HTTP_PROVIDERS],
   templateUrl: 'angular-websockets-demo.component.html',
-  directives: []
+  directives: [MD_BUTTON_DIRECTIVES, MD_TOOLBAR_DIRECTIVES]
   //directives: [NeuralNetGraphComponent]
 })
 export class AngularWebsocketsDemoAppComponent {
