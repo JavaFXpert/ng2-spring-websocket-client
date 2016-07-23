@@ -31,10 +31,11 @@ export class AngularWebsocketsDemoAppComponent {
   predictionResponse: PredictionResponse;
   numInputs: number;
   inputValues: string[] = [];
+  inputFeatureNames: string[] = [];
   @ViewChild('neuralNetGraph') div:ElementRef;
 
   ws: $WebSocket;
-  inputName: String = "CSVExample";
+  inputName: String = "SpeedDating";
 
   constructor(private predictionService: PredictionService) {
     //TODO: Modify to inject into constructor?
@@ -152,6 +153,10 @@ export class AngularWebsocketsDemoAppComponent {
     this.inputValues = [];
     for (var inputIdx in results.neuralNetLayerList[0].neuralNetNodeList) {
       //console.log("inputIdx: " + inputIdx);
+      var neuralNode = results.neuralNetLayerList[0].neuralNetNodeList[inputIdx];
+      if (neuralNode != undefined) {
+        this.inputFeatureNames.push(neuralNode.name);
+      }
       this.inputValues.push("");
     }
 
