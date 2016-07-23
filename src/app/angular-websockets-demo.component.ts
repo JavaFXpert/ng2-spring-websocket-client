@@ -11,6 +11,8 @@ import {PredictionService} from "./service/prediction.service";
 import {PredictionResponse} from "./model/prediction-response";
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
+//import {FORM_DIRECTIVES} from '@angular/forms';
+//import {MD_RADIO_DIRECTIVES} from '@angular2-material/radio/radio';
 
 declare var vis: any;
 
@@ -20,7 +22,7 @@ declare var vis: any;
   styleUrls: ['angular-websockets-demo.component.css'],
   providers: [PredictionService, HTTP_PROVIDERS],
   templateUrl: 'angular-websockets-demo.component.html',
-  directives: [MD_BUTTON_DIRECTIVES, MD_TOOLBAR_DIRECTIVES]
+  directives: [MD_BUTTON_DIRECTIVES, MD_TOOLBAR_DIRECTIVES] //, MD_RADIO_DIRECTIVES,FORM_DIRECTIVES]
   //directives: [NeuralNetGraphComponent]
 })
 export class AngularWebsocketsDemoAppComponent {
@@ -35,7 +37,7 @@ export class AngularWebsocketsDemoAppComponent {
   @ViewChild('neuralNetGraph') div:ElementRef;
 
   ws: $WebSocket;
-  inputName: String = "SpeedDating";
+  inputName: String = "CSVExample";
 
   constructor(private predictionService: PredictionService) {
     //TODO: Modify to inject into constructor?

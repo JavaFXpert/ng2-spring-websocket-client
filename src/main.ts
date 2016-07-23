@@ -37,5 +37,7 @@ export class FlexDirective{
 
 bootstrap(AngularWebsocketsDemoAppComponent, [
   provide(PLATFORM_DIRECTIVES, { useValue: FlexDirective, multi: true}),
-  provide(PLATFORM_DIRECTIVES, { useValue: LayoutDirective, multi: true})
+  provide(PLATFORM_DIRECTIVES, { useValue: LayoutDirective, multi: true}),
+  //disableDeprecatedForms(),
+  //provideForms()
 ]);
