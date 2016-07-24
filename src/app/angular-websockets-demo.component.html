@@ -1,5 +1,5 @@
 <md-toolbar [color]="myColor">
-  <span>Visible Neural Network</span>
+  <span>Exposed Neural Network</span>
 </md-toolbar>
 <section layout="row">
   <div id="controls" flex="20">
@@ -16,10 +16,10 @@
     </div-->
 
     <div layout="column">
-      <button md-raised-button (click)="handleSampleButtonClicked('XorExample')">XorExample</button>
-      <button md-raised-button (click)="handleSampleButtonClicked('CSVExample')">CSVExample</button>
-      <button md-raised-button (click)="handleSampleButtonClicked('MLPClassifierMoon')">MLPClassifierMoon</button>
-      <button md-raised-button (click)="handleSampleButtonClicked('SpeedDating')">SpeedDating</button>
+      <button md-button (click)="handleSampleButtonClicked('XorExample')">XorExample</button>
+      <button md-button (click)="handleSampleButtonClicked('CSVExample')">CSVExample</button>
+      <button md-button (click)="handleSampleButtonClicked('MLPClassifierMoon')">MLPClassifierMoon</button>
+      <button md-button (click)="handleSampleButtonClicked('SpeedDating')">SpeedDating</button>
     </div>
 
     <div layout="column">
@@ -34,7 +34,7 @@
       <input placeholder={{inputFeatureNames[7]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[7]" />
       <input placeholder={{inputFeatureNames[8]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[8]" />
       <input placeholder={{inputFeatureNames[9]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[9]" />
-      <button md-raised-button (click)="handlePredictButtonClicked()">Predict</button>
+      <button md-button [disabled]="inputValues.length == 0" (click)="handlePredictButtonClicked()">Predict</button>
     </div>
 
 

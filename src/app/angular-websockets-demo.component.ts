@@ -165,6 +165,7 @@ export class AngularWebsocketsDemoAppComponent {
 
     // Create an array element for each input
     this.inputValues = [];
+    this.inputFeatureNames = [];
     for (var inputIdx in results.neuralNetLayerList[0].neuralNetNodeList) {
       //console.log("inputIdx: " + inputIdx);
       var neuralNode = results.neuralNetLayerList[0].neuralNetNodeList[inputIdx];
