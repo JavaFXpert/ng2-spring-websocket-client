@@ -16,10 +16,10 @@
     </div-->
 
     <div layout="column">
-      <button md-button (click)="handleSampleButtonClicked('XorExample')">XorExample</button>
-      <button md-button (click)="handleSampleButtonClicked('CSVExample')">CSVExample</button>
-      <button md-button (click)="handleSampleButtonClicked('MLPClassifierMoon')">MLPClassifierMoon</button>
-      <button md-button (click)="handleSampleButtonClicked('SpeedDating')">SpeedDating</button>
+      <button md-button [color]="curSampleName == 'XorExample'? 'accent' : 'primary'" (click)="handleSampleButtonClicked('XorExample')">XorExample</button>
+      <button md-button [color]="curSampleName == 'CSVExample'? 'accent' : 'primary'" (click)="handleSampleButtonClicked('CSVExample')">CSVExample</button>
+      <button md-button [color]="curSampleName == 'SpeedDating'? 'accent' : 'primary'" (click)="handleSampleButtonClicked('SpeedDating')">SpeedDating</button>
+      <!--button md-button [color]="curSampleName == 'MLPClassifierMoon'? 'accent' : 'primary'" (click)="handleSampleButtonClicked('MLPClassifierMoon')">MLPClassifierMoon</button-->
     </div>
 
     <div layout="column">
@@ -34,7 +34,7 @@
       <input placeholder={{inputFeatureNames[7]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[7]" />
       <input placeholder={{inputFeatureNames[8]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[8]" />
       <input placeholder={{inputFeatureNames[9]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[9]" />
-      <button md-button [disabled]="inputValues.length == 0" (click)="handlePredictButtonClicked()">Predict</button>
+      <button md-raised-button [disabled]="inputValues.length == 0" (click)="handlePredictButtonClicked()">Predict</button>
     </div>
 
 

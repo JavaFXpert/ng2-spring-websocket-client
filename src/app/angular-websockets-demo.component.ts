@@ -31,13 +31,13 @@ export class AngularWebsocketsDemoAppComponent {
   edges: any;
   errorMessage: string;
   predictionResponse: PredictionResponse;
-  numInputs: number;
+  //numInputs: number;
   inputValues: string[] = [];
   inputFeatureNames: string[] = [];
   @ViewChild('neuralNetGraph') div:ElementRef;
 
   ws: $WebSocket;
-  inputName: String = "CSVExample";
+  curSampleName: String = "";
 
   constructor(private predictionService: PredictionService) {
     //TODO: Modify to inject into constructor?
@@ -90,6 +90,7 @@ export class AngularWebsocketsDemoAppComponent {
     this.ws.close(true);
   }
 
+  /*
   handleSendButtonClicked() {
     console.log("Send button clicked");
     console.log("ws.getReadyState(): " + this.ws.getReadyState());
@@ -99,10 +100,12 @@ export class AngularWebsocketsDemoAppComponent {
     //this.ws.send(JSON.stringify({ 'name': name }));
     this.ws.send(JSON.stringify({ 'name': this.inputName }));
   }
+  */
 
   handleSampleButtonClicked(sampleName: string) {
     console.log("Sample button clicked: " + sampleName);
     console.log("ws.getReadyState(): " + this.ws.getReadyState());
+    this.curSampleName = sampleName;
 
     //let name = "James";
 
@@ -161,7 +164,7 @@ export class AngularWebsocketsDemoAppComponent {
 
   updateNeuralNetGraph(results: any) {
     // Make note of the number of inputs TODO: perhaps remove this and the numInputs member variable
-    this.numInputs = results.neuralNetLayerList[0].neuralNetNodeList.length;
+    //this.numInputs = results.neuralNetLayerList[0].neuralNetNodeList.length;
 
     // Create an array element for each input
     this.inputValues = [];

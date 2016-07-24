@@ -22,3 +22,11 @@ section {
   height: 600px;
 }
 
+input {
+  margin: 2px 40px 2px 40px;
+}
+
+button {
+  margin: 6px 8px 2px 8px;
+}
+
