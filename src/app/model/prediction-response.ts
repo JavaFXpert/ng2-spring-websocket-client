@@ -4,7 +4,8 @@
 export class PredictionResponse {
   constructor(
     public prediction: number,
-    public activations: number[]
+    public activations: number[],
+    public numOutputNodes: number
   )
   {}
 }

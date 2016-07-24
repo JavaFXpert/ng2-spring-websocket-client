@@ -194,7 +194,12 @@ export class AngularWebsocketsDemoAppComponent {
       //alert("predictionResp.prediction: " + predictionResp.prediction);
     }
     for (let nodeId in predictionResp.activations) {
-      this.nodes.update([{id: nodeId, image: this.createNodeLabel("" + predictionResp.activations[nodeId]), shape: 'circularImage'}]);
+      this.nodes.update([{id: nodeId, image: this.createNodeLabel("" + predictionResp.activations[nodeId]), shape: 'circularImage', borderWidth: "1"}]);
+
+      // Put wider border around predicted label
+      if (Number(nodeId) == predictionResp.activations.length - predictionResp.numOutputNodes + predictionResp.prediction) {
+        this.nodes.update([{id: nodeId, borderWidth: "5"}]);
+      }
     }
     this.network.setOptions(this.createGraphOptions());
   }
