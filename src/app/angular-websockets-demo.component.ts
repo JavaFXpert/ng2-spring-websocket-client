@@ -45,7 +45,7 @@ export class AngularWebsocketsDemoAppComponent {
     this.ws = new $WebSocket("ws://localhost:8080/counter");
   }
 
-  handleConnectButtonClicked() {
+  connectToWebSocket() {
     var subject: Subject<any>;
 
     console.log("Connect button clicked");
@@ -98,7 +98,16 @@ export class AngularWebsocketsDemoAppComponent {
 
     //this.ws.send(JSON.stringify({ 'name': name }));
     this.ws.send(JSON.stringify({ 'name': this.inputName }));
+  }
 
+  handleSampleButtonClicked(sampleName: string) {
+    console.log("Sample button clicked: " + sampleName);
+    console.log("ws.getReadyState(): " + this.ws.getReadyState());
+
+    //let name = "James";
+
+    //this.ws.send(JSON.stringify({ 'name': name }));
+    this.ws.send(JSON.stringify({ 'name': sampleName }));
   }
 
   handlePredictButtonClicked() {
@@ -114,6 +123,8 @@ export class AngularWebsocketsDemoAppComponent {
   }
 
   ngAfterViewInit() {
+    this.connectToWebSocket();
+    /*
     var results = {
       nodes: [
         {
@@ -145,6 +156,7 @@ export class AngularWebsocketsDemoAppComponent {
       edges: this.edges
     };
     this.network = new vis.Network(this.div.nativeElement, data, this.createGraphOptions());
+    */
   }
 
   updateNeuralNetGraph(results: any) {
