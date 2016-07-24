@@ -19,6 +19,7 @@
       <button md-button [color]="curSampleName == 'XorExample'? 'accent' : 'primary'" (click)="handleSampleButtonClicked('XorExample')">XOR</button>
       <button md-button [color]="curSampleName == 'CSVExample'? 'accent' : 'primary'" (click)="handleSampleButtonClicked('CSVExample')">Iris flower</button>
       <button md-button [color]="curSampleName == 'SpeedDating'? 'accent' : 'primary'" (click)="handleSampleButtonClicked('SpeedDating')">Speed Dating</button>
+      <button md-button [color]="curSampleName == 'BasicRNNExample'? 'accent' : 'primary'" (click)="handleSampleButtonClicked('BasicRNNExample')">Basic RNN Example</button>
       <!--button md-button [color]="curSampleName == 'MLPClassifierMoon'? 'accent' : 'primary'" (click)="handleSampleButtonClicked('MLPClassifierMoon')">MLPClassifierMoon</button-->
     </div>
 
@@ -30,10 +31,30 @@
       <input placeholder={{inputFeatureNames[3]}} *ngIf="inputValues.length > 3" [(ngModel)]="inputValues[3]" />
       <input placeholder={{inputFeatureNames[4]}} *ngIf="inputValues.length > 4" [(ngModel)]="inputValues[4]" />
       <input placeholder={{inputFeatureNames[5]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[5]" />
-      <input placeholder={{inputFeatureNames[6]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[6]" />
-      <input placeholder={{inputFeatureNames[7]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[7]" />
-      <input placeholder={{inputFeatureNames[8]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[8]" />
-      <input placeholder={{inputFeatureNames[9]}} *ngIf="inputValues.length > 5" [(ngModel)]="inputValues[9]" />
+      <input placeholder={{inputFeatureNames[6]}} *ngIf="inputValues.length > 6" [(ngModel)]="inputValues[6]" />
+      <input placeholder={{inputFeatureNames[7]}} *ngIf="inputValues.length > 7" [(ngModel)]="inputValues[7]" />
+      <input placeholder={{inputFeatureNames[8]}} *ngIf="inputValues.length > 8" [(ngModel)]="inputValues[8]" />
+      <input placeholder={{inputFeatureNames[9]}} *ngIf="inputValues.length > 9" [(ngModel)]="inputValues[9]" />
+      <!--input placeholder={{inputFeatureNames[10]}} *ngIf="inputValues.length > 10" [(ngModel)]="inputValues[10]" />
+      <input placeholder={{inputFeatureNames[11]}} *ngIf="inputValues.length > 11" [(ngModel)]="inputValues[11]" />
+      <input placeholder={{inputFeatureNames[12]}} *ngIf="inputValues.length > 12" [(ngModel)]="inputValues[12]" />
+      <input placeholder={{inputFeatureNames[13]}} *ngIf="inputValues.length > 13" [(ngModel)]="inputValues[13]" />
+      <input placeholder={{inputFeatureNames[14]}} *ngIf="inputValues.length > 14" [(ngModel)]="inputValues[14]" />
+      <input placeholder={{inputFeatureNames[15]}} *ngIf="inputValues.length > 15" [(ngModel)]="inputValues[15]" />
+      <input placeholder={{inputFeatureNames[16]}} *ngIf="inputValues.length > 16" [(ngModel)]="inputValues[16]" />
+      <input placeholder={{inputFeatureNames[17]}} *ngIf="inputValues.length > 17" [(ngModel)]="inputValues[17]" />
+      <input placeholder={{inputFeatureNames[18]}} *ngIf="inputValues.length > 18" [(ngModel)]="inputValues[18]" />
+      <input placeholder={{inputFeatureNames[19]}} *ngIf="inputValues.length > 19" [(ngModel)]="inputValues[19]" />
+      <input placeholder={{inputFeatureNames[20]}} *ngIf="inputValues.length > 20" [(ngModel)]="inputValues[20]" />
+      <input placeholder={{inputFeatureNames[21]}} *ngIf="inputValues.length > 21" [(ngModel)]="inputValues[21]" />
+      <input placeholder={{inputFeatureNames[22]}} *ngIf="inputValues.length > 22" [(ngModel)]="inputValues[22]" />
+      <input placeholder={{inputFeatureNames[23]}} *ngIf="inputValues.length > 23" [(ngModel)]="inputValues[23]" />
+      <input placeholder={{inputFeatureNames[24]}} *ngIf="inputValues.length > 24" [(ngModel)]="inputValues[24]" />
+      <input placeholder={{inputFeatureNames[25]}} *ngIf="inputValues.length > 25" [(ngModel)]="inputValues[25]" />
+      <input placeholder={{inputFeatureNames[26]}} *ngIf="inputValues.length > 26" [(ngModel)]="inputValues[26]" />
+      <input placeholder={{inputFeatureNames[27]}} *ngIf="inputValues.length > 27" [(ngModel)]="inputValues[27]" />
+      <input placeholder={{inputFeatureNames[28]}} *ngIf="inputValues.length > 28" [(ngModel)]="inputValues[28]" />
+      <input placeholder={{inputFeatureNames[29]}} *ngIf="inputValues.length > 29" [(ngModel)]="inputValues[29]" /-->
       <button md-raised-button [disabled]="inputValues.length == 0" (click)="handlePredictButtonClicked()">Predict</button>
     </div>
 
