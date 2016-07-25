@@ -193,8 +193,12 @@ export class AngularWebsocketsDemoAppComponent {
     if (predictionResp != null) {
       //alert("predictionResp.prediction: " + predictionResp.prediction);
     }
+
+    var numInputs = this.inputFeatureNames.length;
+    var nodeLabel: string = "";
     for (let nodeId in predictionResp.activations) {
-      this.nodes.update([{id: nodeId, image: this.createNodeLabel("" + predictionResp.activations[nodeId]), shape: 'circularImage', borderWidth: "1"}]);
+      nodeLabel = this.createNodeLabel(predictionResp.activations[nodeId] + ((predictionResp.inputsNormalized && Number(nodeId) < numInputs) ? "n" : ""));
+      this.nodes.update([{id: nodeId, image: nodeLabel, shape: 'circularImage', borderWidth: "1"}]);
 
       // Put wider border around predicted label
       if (Number(nodeId) == predictionResp.activations.length - predictionResp.numOutputNodes + predictionResp.prediction) {
@@ -207,7 +211,7 @@ export class AngularWebsocketsDemoAppComponent {
   createNodeLabel(label: String) {
     var data = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">' +
       '<rect x="0" y="0" width="100%" height="100%" fill="#ffffff" ></rect>' +
-      '<foreignObject x="12" y="11" width="100%" height="100%">' +
+      '<foreignObject x="10" y="11" width="100%" height="100%">' +
       '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:6px">' +
       '<span style="color:black;">' + label +
       '</span>' +

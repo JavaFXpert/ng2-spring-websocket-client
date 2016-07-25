@@ -25,6 +25,7 @@
 
     <div layout="column">
       <!-- TODO: Find out how to bind to an array -->
+      <button md-raised-button [disabled]="inputValues.length == 0" (click)="handlePredictButtonClicked()">Predict</button>
       <input placeholder={{inputFeatureNames[0]}} *ngIf="inputValues.length > 0" [(ngModel)]="inputValues[0]" />
       <input placeholder={{inputFeatureNames[1]}} *ngIf="inputValues.length > 1" [(ngModel)]="inputValues[1]" />
       <input placeholder={{inputFeatureNames[2]}} *ngIf="inputValues.length > 2" [(ngModel)]="inputValues[2]" />
@@ -55,7 +56,6 @@
       <input placeholder={{inputFeatureNames[27]}} *ngIf="inputValues.length > 27" [(ngModel)]="inputValues[27]" />
       <input placeholder={{inputFeatureNames[28]}} *ngIf="inputValues.length > 28" [(ngModel)]="inputValues[28]" />
       <input placeholder={{inputFeatureNames[29]}} *ngIf="inputValues.length > 29" [(ngModel)]="inputValues[29]" /-->
-      <button md-raised-button [disabled]="inputValues.length == 0" (click)="handlePredictButtonClicked()">Predict</button>
     </div>
 
 

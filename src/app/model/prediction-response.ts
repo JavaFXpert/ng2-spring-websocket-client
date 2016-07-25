@@ -5,7 +5,8 @@ export class PredictionResponse {
   constructor(
     public prediction: number,
     public activations: number[],
-    public numOutputNodes: number
+    public numOutputNodes: number,
+    public inputsNormalized: boolean
   )
   {}
 }
