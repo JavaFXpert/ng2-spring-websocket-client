@@ -36,6 +36,13 @@ declare namespace vis {
     new(from?: string, to?: string, id?: string): Vis.IEdge;
   }
   export var Edge: IEdgeStatic;
+
+  export interface IGraph2dStatic {
+    new(id: HTMLElement, data: any, options?: any): Vis.IGraph2d;
+  }
+  export var Graph2d: IGraph2dStatic;
+
+
 }
 
 declare namespace Vis {
@@ -425,4 +432,13 @@ declare namespace Vis {
 
     configChange?(properties?: any): void;
   }
+
+  interface IGraph2d {
+    network?: any;
+    selectNodes?(nodeIds: string[], highlightEdges?: boolean): void;
+    unselectAll?(): void;
+    fit?(): void;
+  }
+
+
 }

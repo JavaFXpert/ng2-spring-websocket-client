@@ -58,24 +58,7 @@
       <input placeholder={{inputFeatureNames[29]}} *ngIf="inputValues.length > 29" [(ngModel)]="inputValues[29]" /-->
     </div>
 
-
-    <!--div layout="column">
-      <div *ngFor="let inputValue of inputValues" >
-        <input placeholder="feature" align="end" value={{inputValue}} />
-      </div>
-      <button md-button (click)="handlePredictButtonClicked()">Predict</button>
-    </div-->
-
-    <!--ul>
-      <li *ngFor="let inputValue of inputValues">
-        {{inputValue}}
-      </li>
-    </ul-->
-
-    <!--div layout="row">
-      <div flex>First</div>
-      <div flex>Second</div>
-    </div-->
+    <div #scoreGraph id="scoreGraph"></div>
   </div>
   <div #neuralNetGraph id="neuralNetGraph" flex="70" grow="50"></div>
 </section>

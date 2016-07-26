@@ -27,6 +27,7 @@ declare var vis: any;
 })
 export class AngularWebsocketsDemoAppComponent {
   network: any;
+  graph2d: any;
   nodes: any;
   edges: any;
   errorMessage: string;
@@ -35,6 +36,7 @@ export class AngularWebsocketsDemoAppComponent {
   inputValues: string[] = [];
   inputFeatureNames: string[] = [];
   @ViewChild('neuralNetGraph') div:ElementRef;
+  @ViewChild('scoreGraph') scoreGraph:ElementRef;
 
   ws: $WebSocket;
   curSampleName: String = "";
@@ -65,6 +67,9 @@ export class AngularWebsocketsDemoAppComponent {
           var jsonObject = JSON.parse(evt.data);
 
           this.updateNeuralNetGraph(jsonObject);
+
+          // TODO: Uncomment when Vis Graph2d works in this environment
+          //this.updateScoreGraph(jsonObject);
         },
         function (e) {
           console.log('Error: ' + e.message);
@@ -127,39 +132,6 @@ export class AngularWebsocketsDemoAppComponent {
 
   ngAfterViewInit() {
     this.connectToWebSocket();
-    /*
-    var results = {
-      nodes: [
-        {
-          id: "0",
-          label: "",
-          image: 'http://learnjavafx.typepad.com/mle/sigmoid.png'
-        },
-        {
-          id: "2",
-          label: "-4.45",
-          image: 'http://learnjavafx.typepad.com/mle/sigmoid.png'
-        }
-      ],
-      edges: [
-        {
-          from: "0",
-          to: "2",
-          arrows: "to",
-          label: "2.6"
-        }
-      ]
-    }
-
-    this.nodes = new vis.DataSet(results.nodes);
-    this.edges = new vis.DataSet(results.edges);
-
-    var data = {
-      nodes: this.nodes,
-      edges: this.edges
-    };
-    this.network = new vis.Network(this.div.nativeElement, data, this.createGraphOptions());
-    */
   }
 
   updateNeuralNetGraph(results: any) {
@@ -275,5 +247,14 @@ export class AngularWebsocketsDemoAppComponent {
       }
     };
     return graphOptions;
+  }
+
+  // TODO: Work out this functionality
+  updateScoreGraph(results: any) {
+    var items = [];
+
+    var dataset = new vis.DataSet(items);
+    var options = {};
+    this.graph2d = new vis.Graph2d(this.div.nativeElement, dataset, options);
   }
 }
