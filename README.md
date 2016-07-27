@@ -1,1 +1,1 @@
-ml-websocket-client
+Client-side of interactive visualization of artificial neural networks
